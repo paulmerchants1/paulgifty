@@ -99,7 +99,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>gifty-app</finalName>
+		<finalName>giftyapp</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
