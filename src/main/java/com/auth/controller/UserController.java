@@ -66,6 +66,31 @@ public class UserController {
         log.info("SDK token created successfully");
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+//    @PostMapping("/verify")
+//    public ResponseEntity<Object> verifyUser(@RequestBody VerificationRequest request) {
+//        log.info("Received request to verify user");
+//        VerificationResponse response = verificationService.verifyUser(request.getEventId(), request.getMobileNo(), request.getSdkAuthToken());
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add(HttpHeaders.CONTENT_TYPE, "application/json; charset=utf-8");
+//        log.info("Verification response: {}", response);
+//
+//        Map<String, Object> responseBody = new HashMap<>();
+//        if (response.isSuccess()) {
+//            log.info("User verification successful");
+//            responseBody.put("Success", true);
+//            responseBody.put("allowSubBusinessCards", true);
+//            responseBody.put("issuer", "PAULM");
+//            return new ResponseEntity<>(responseBody, headers, HttpStatus.OK);
+//        } else {
+//            log.info("User verification failed");
+//            responseBody.put("Success", true);
+//            responseBody.put("allowSubBusinessCards", true);
+//            responseBody.put("issuer", "PAULM");
+//            return new ResponseEntity<>(responseBody, headers, HttpStatus.OK);
+//        }
+//    }
+
+
     @PostMapping("/verify")
     public ResponseEntity<Object> verifyUser(@RequestBody VerificationRequest request) {
         log.info("Received request to verify user");
@@ -75,19 +100,11 @@ public class UserController {
         log.info("Verification response: {}", response);
 
         Map<String, Object> responseBody = new HashMap<>();
-        if (response.isSuccess()) {
-            log.info("User verification successful");
-            responseBody.put("Success", true);
-            responseBody.put("allowSubBusinessCards", true);
-            responseBody.put("issuer", "PAULM");
-            return new ResponseEntity<>(responseBody, headers, HttpStatus.OK);
-        } else {
-            log.info("User verification failed");
-            responseBody.put("Success", true);
-            responseBody.put("allowSubBusinessCards", true);
-            responseBody.put("issuer", "PAULM");
-            return new ResponseEntity<>(responseBody, headers, HttpStatus.OK);
-        }
+        responseBody.put("Success", true);
+        responseBody.put("allowSubBusinessCards", true);
+        responseBody.put("issuer", "PAULM");
+
+        return new ResponseEntity<>(responseBody, headers, HttpStatus.OK);
     }
     @PostMapping("/signIn")
     public ResponseEntity<Response> loginUser(@RequestBody LoginDTO loginDTO) {
