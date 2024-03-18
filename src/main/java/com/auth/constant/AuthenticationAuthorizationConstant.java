@@ -2,6 +2,8 @@ package com.auth.constant;
 
 public class AuthenticationAuthorizationConstant {
 
+
+
     public static final String ERROR_STATUS = "error";
     public static final String ERROR_CODE = "500";
 
