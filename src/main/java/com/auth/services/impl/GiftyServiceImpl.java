@@ -83,7 +83,7 @@ public class GiftyServiceImpl implements GiftyService {
 
     }
 
-
+    //    The below method is for preprod Testing purposes
     @Override
     public Response createSdkTokenV2(MobileNoDTO mobileNoDTO) {
         log.info("==> GiftyServiceImpl :: inside createSdkTOken method  <==");

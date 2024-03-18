@@ -66,6 +66,8 @@ public class UserController {
         log.info("SDK token created successfully");
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+//    The below method is for preprod Testing purposes
     @PostMapping("/sdk-tokenv2")
     public ResponseEntity<Response> CreateSdkTokenV2(@RequestBody MobileNoDTO mobileNoDTO){
         log.info(" Recieved request ton create SdkTOken");
