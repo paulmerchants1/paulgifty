@@ -66,7 +66,13 @@ public class UserController {
         log.info("SDK token created successfully");
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
-
+    @PostMapping("/sdk-tokenv2")
+    public ResponseEntity<Response> CreateSdkTokenV2(@RequestBody MobileNoDTO mobileNoDTO){
+        log.info(" Recieved request ton create SdkTOken");
+        Response sdkToken = giftyService.createSdkTokenV2(mobileNoDTO);
+        log.info("SDK Token Created");
+        return new ResponseEntity<>(sdkToken,HttpStatus.CREATED);
+    }
 
     @PostMapping("/verify")
     public ResponseEntity<Object> verifyUser(@RequestBody VerificationRequest request) {
@@ -76,6 +82,7 @@ public class UserController {
         headers.add(HttpHeaders.CONTENT_TYPE, "application/json; charset=utf-8");
         log.info("Verification response: {}", response);
 
+
         Map<String, Object> responseBody = new HashMap<>();
         responseBody.put("Success", true);
         responseBody.put("allowSubBusinessCards", true);
@@ -83,6 +90,22 @@ public class UserController {
 
         return new ResponseEntity<>(responseBody, headers, HttpStatus.OK);
     }
+
+//        Map<String, Object> responseBody = new HashMap<>();
+//        if (response.isSuccess()) {
+//            log.info("User verification successful");
+//            responseBody.put("Success", true);
+//            responseBody.put("allowSubBusinessCards", true);
+//            responseBody.put("issuer", "PAULM");
+//            return new ResponseEntity<>(responseBody, headers, HttpStatus.OK);
+//        } else {
+//            log.info("User verification failed");
+//            responseBody.put("Failure", false);
+//            responseBody.put("allowSubBusinessCards", false);
+//            responseBody.put("issuer", "PAULM");
+//            return new ResponseEntity<>(responseBody, headers, HttpStatus.OK);
+//        }
+//    }
     @PostMapping("/signIn")
     public ResponseEntity<Response> loginUser(@RequestBody LoginDTO loginDTO) {
 
@@ -91,6 +114,8 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
+
+
     @PostMapping("/set-password")
     public ResponseEntity<Response> setPassword(@RequestBody SetPasswordDTO setPasswordDTO) {
 

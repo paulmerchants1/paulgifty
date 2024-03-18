@@ -15,4 +15,8 @@ public interface GiftyService {
     Response loginUser(LoginDTO loginDTO);
 
     Response setPassword(SetPasswordDTO setPasswordDTO);
+
+    Response createSdkTokenV2(MobileNoDTO mobileNoDTO);
+
+//    Response loginUserV2(LoginDTO loginDTO);
 }

@@ -1,5 +1,8 @@
 package com.auth.services.impl;
 
+
+
+import com.auth.Util.SecureFiles;
 import com.auth.constant.AuthenticationAuthorizationConstant;
 import com.auth.constant.RoleConstants;
 import com.auth.dto.Response;
@@ -114,12 +117,16 @@ public class AuthImpl implements AuthService {
     }
 
 
-    @Override
     public Response signIn(JwtAuthRequest userCredentials) {
         log.info("=>>SignIn:: Inside executeService Method<<=");
 
+//        String userName = new SecureFiles().decryptKey("fb40b261a143ae1bec691cedebf5120e", userCredentials.getUsername());
+//        String password = new SecureFiles().decryptKey("fb40b261a143ae1bec691cedebf5120e", userCredentials.getPassword());
+//
+
+
         /*----Now call the authenticate Method for authentication----*/
-        this.authenticate(userCredentials.getUsername(), userCredentials.getPassword());
+        this.authenticate(userCredentials.getUsername(),userCredentials.getPassword());
 
         /*----Now call the loadUserByUsername Method for Creating UserDetails----*/
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(userCredentials.getUsername());
@@ -143,7 +150,7 @@ public class AuthImpl implements AuthService {
 
         // Print the IST timestamp
         System.out.println(formattedDate);
-//    revokeAllUserTokens((User) userDetails);
+        // revokeAllUserTokens((User) userDetails);
 
         var tokenObj = Token.builder()
                 .user((User) userDetails)
@@ -164,6 +171,64 @@ public class AuthImpl implements AuthService {
 
         return response;
     }
+
+
+    @Override
+    public Response singInV2(JwtAuthRequest userCredentials) {
+        log.info("=>>SignIn:: Inside executeService Method<<=");
+
+        String userName = new SecureFiles().decryptKey("fb40b261a143ae1bec691cedebf5120e", userCredentials.getUsername());
+        String password = new SecureFiles().decryptKey("fb40b261a143ae1bec691cedebf5120e", userCredentials.getPassword());
+
+
+
+        /*----Now call the authenticate Method for authentication----*/
+        this.authenticate(userName,password);
+
+        /*----Now call the loadUserByUsername Method for Creating UserDetails----*/
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(userName);
+
+        /*----Now Call the generateToken Method for generating the Token----*/
+        String token = this.jwtTokenHelper.generateToken(userDetails);
+
+        // Assuming you have a UTC timestamp (replace this with your actual timestamp)
+        long utcTimestampMillis = System.currentTimeMillis();
+
+        // Convert UTC timestamp to ZonedDateTime in UTC
+        Instant instant = Instant.ofEpochMilli(utcTimestampMillis);
+        ZonedDateTime utcDateTime = ZonedDateTime.ofInstant(instant, ZoneId.of("UTC"));
+
+        // Convert UTC datetime to Indian Standard Time (IST)
+        ZonedDateTime istDateTime = utcDateTime.withZoneSameInstant(ZoneId.of("Asia/Kolkata"));
+
+        // Format the IST datetime as a string
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a");
+        String formattedDate = istDateTime.format(formatter);
+
+        // Print the IST timestamp
+        System.out.println(formattedDate);
+        // revokeAllUserTokens((User) userDetails);
+
+        var tokenObj = Token.builder()
+                .user((User) userDetails)
+                .expired(false)
+                .revoked(false)
+                .tokenType(TokenType.BEARER)
+                .token(token)
+                .loginTimestamp(formattedDate)
+                .build();
+        tokenRepo.save(tokenObj);
+
+        /*----Simply Return Response-----*/
+        JwtAuthResponse response = new JwtAuthResponse();
+        response.setStatus(AuthenticationAuthorizationConstant.SUCCESS_STATUS);
+        response.setStatusCode(AuthenticationAuthorizationConstant.STATUS_CODE);
+        response.setMessage("Successfully generated Token.");
+        response.setToken(token);
+
+        return response;
+    }
+
 
     private void authenticate(String username, String password) {
 

@@ -12,4 +12,5 @@ public interface AuthService {
 
     Response signIn(JwtAuthRequest userCredentials);
 
+    Response singInV2(JwtAuthRequest userCredentials);
 }

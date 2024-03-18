@@ -45,7 +45,14 @@ public class AuthController {
         return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
-    // Endpoint for user login
+    @PostMapping("/loginv2")
+    public ResponseEntity<Response> singInV2(@RequestBody JwtAuthRequest userCredentials) {
+
+        LOGGER.info("=>>AuthController:: Inside SignIn Method<<=");
+        Response response = authService.singInV2(userCredentials);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+
+    }
 
 }
 

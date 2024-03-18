@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
                 UserInfo byCard = userInfoRepository.findByCardNo(userInfo.getCardNo());
 
                 if (!(byCard == null)) {
-                    log.warn("Duplicate card number found: {}", userInfo.getCardNo());
+
                     apiResponse.setMessage("Please Check Your Mobile No");
                     return apiResponse;
                 }
