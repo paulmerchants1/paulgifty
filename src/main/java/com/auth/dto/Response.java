@@ -1,5 +1,6 @@
 package com.auth.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -25,6 +26,6 @@ public class Response implements Serializable {
     private String responseType;
 
 
-
-    private transient Object sdktoken;
+    //@JsonIgnore
+    //private transient Object sdktoken;
 }

@@ -6,6 +6,7 @@ public class  SecurityConfigConstants {
     private SecurityConfigConstants() {}
 
     public static final String[] PUBLIC_URL = {
+            "/api/user/login_test/**",
             "/api/user/login/**",
             "/api/user/loginv2/**",
             "/api/user/sdk-token/**",

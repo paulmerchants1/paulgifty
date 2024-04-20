@@ -115,7 +115,7 @@ public class GiftyServiceImpl implements GiftyService {
         sdkToken.setMessage("SUCCESS");
         sdkToken.setStatus("200");
         sdkToken.setMessage("SuccessFully Create SdkToken");
-        sdkToken.setSdktoken(generateSDKToken);
+        sdkToken.setSdkToken(generateSDKToken);
 
         return sdkToken;
     }
@@ -276,13 +276,13 @@ public class GiftyServiceImpl implements GiftyService {
     }
 
     private Response createSuccessResponse(String mobileNo) {
-        Response response = new Response();
-        response.setStatus("SUCCESS");
-        response.setStatusCode("200");
-        response.setMessage("Successfully Login!");
-        response.setSdktoken(generateSDKToken(mobileNo));
+//        SdkToken response = new SdkToken();
+        sdkToken.setStatus("SUCCESS");
+        sdkToken.setStatusCode("200");
+        sdkToken.setMessage("Successfully Login!");
+        sdkToken.setSdkToken(generateSDKToken(mobileNo));
 //        response.setResponse_message("TokenRequestDTO Processed Successfully");
-        return response;
+        return sdkToken;
     }
     private void saveRequestDataToDatabase(LoginDTO loginDTO) {
         String mobileNo = loginDTO.getMobileNo();
