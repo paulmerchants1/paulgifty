@@ -121,9 +121,6 @@ public class GiftyServiceImpl implements GiftyService {
         return sdkToken;
     }
 
-
-
-
     @Override
     public Response resetPassword(ResetDTO resetDTO) {
         log.info("=>> GiftyServiceImpl:: Inside resetPassword Method <<=");
