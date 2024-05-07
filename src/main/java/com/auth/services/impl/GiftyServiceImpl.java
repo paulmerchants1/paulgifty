@@ -6,7 +6,6 @@ import com.auth.dto.ResetDTO;
 import com.auth.dto.Response;
 import com.auth.dto.SetPasswordDTO;
 import com.auth.dto.sdkdto.MobileNoDTO;
-import com.auth.dto.sdkdto.SdkToken;
 import com.auth.entity.PasswordManager;
 import com.auth.entity.UserData;
 import com.auth.entity.skdentity.SdkResponse;
@@ -21,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +31,7 @@ import java.util.Optional;
 public class GiftyServiceImpl implements GiftyService {
 
     @Autowired
-    private final SdkToken sdkToken;
+    //private final SdkToken sdkToken;
     private final SdkResponseRepo sdkResponseRepo;
     private final UserInfoRepository userInfoRepository;
     private final Response response;
@@ -68,18 +68,18 @@ public class GiftyServiceImpl implements GiftyService {
         Optional<PasswordManager> byMobileNo = passwordManagerRepo.findByMobileNo(mobileNo);
 
         if (byMobileNo.isPresent() && byMobileNo.get().getPassword() != null) {
-            sdkToken.setPassword(true);  // Password is set
+            response.setPassword(true);  // Password is set
         } else {
-            sdkToken.setPassword(false);  // Password is not set
+            response.setPassword(false);  // Password is not set
         }
 
-        sdkToken.setMessage("SUCCESS");
-        sdkToken.setStatusCode("200");
-        sdkToken.setMessage("Successfully Create SDKToken!");
-        sdkToken.setSdkToken(generatedSDKToken);
+        response.setMessage("SUCCESS");
+        response.setStatusCode("200");
+        response.setMessage("Successfully Create SDKToken!");
+        response.setSdkToken(generatedSDKToken);
 
 
-        return sdkToken;
+        return response;
 
     }
 
@@ -108,17 +108,17 @@ public class GiftyServiceImpl implements GiftyService {
         Optional<PasswordManager> byMobileNo1 = passwordManagerRepo.findByMobileNo(mobileNo);
 
         if (byMobileNo1.isPresent() && byMobileNo1.get().getPassword() != null) {
-            sdkToken.setPassword(true);
+            response.setPassword(true);
         } else {
-            sdkToken.setPassword(false);
+            response.setPassword(false);
         }
 
-        sdkToken.setMessage("SUCCESS");
-        sdkToken.setStatus("200");
-        sdkToken.setMessage("SuccessFully Create SdkToken");
-        sdkToken.setSdkToken(generateSDKToken);
+        response.setMessage("SUCCESS");
+        response.setStatus("200");
+        response.setMessage("SuccessFully Create SdkToken");
+        response.setSdkToken(generateSDKToken);
 
-        return sdkToken;
+        return response;
     }
 
     @Override
@@ -169,45 +169,6 @@ public class GiftyServiceImpl implements GiftyService {
 
         return response;
     }
-
-//    @Override
-//    public Response loginUser(LoginDTO loginDTO) {
-//        log.info("=>> GiftyServiceImpl:: Inside loginUser Method <<=");
-//
-//        String mobileNo = loginDTO.getMobileNo();
-//        log.info("mobileNo = " + mobileNo);
-//
-//        String password = loginDTO.getPassword();
-//        log.info("password = " + password);
-//
-//        List<PasswordManager> byMobileNo = passwordManagerRepo.findByMobileNoAndPassword(mobileNo, password);
-//
-//        Response response = new Response();
-//
-//        if (byMobileNo.isEmpty()) {
-//            log.error("Invalid mobileNo or password");
-//            response.setStatus("FAILURE");  // Set status to 'FAILURE' for an invalid login
-//            response.setStatusCode("401");  // You can use a suitable error code
-//            response.setMessage("Invalid mobileNo or password");
-//            response.setSdktoken(null);  // Set the token to null
-//        } else {
-//            String sdkToken1 = null;
-//            Optional<SdkResponse> byMobileNo1 = sdkResponseRepo.findByMobileNo(mobileNo);
-//            if (byMobileNo1.isPresent()) {
-//                String token = generateSDKToken(mobileNo);
-//                byMobileNo1.get().setSdkToken(token);
-//                sdkResponseRepo.save(byMobileNo1.get());
-//                sdkToken1 = token;
-//            }
-//            response.setStatus("SUCCESS");
-//            response.setStatusCode("200");
-//            response.setMessage("Successfully Login!");
-//            response.setSdktoken(sdkToken1);
-//        }
-//
-//        return response;
-//    }
-
     @Override
     public Response loginUser(LoginDTO loginDTO) {
         String mobileNo = loginDTO.getMobileNo();
@@ -215,7 +176,13 @@ public class GiftyServiceImpl implements GiftyService {
 
         // Check if user is blocked
         if (loginAttemptService.isUserBlocked(mobileNo)) {
-            return createBlockedUserResponse();
+          LocalDateTime blockEndTime =  loginAttemptService.getBlockStartTime(mobileNo).plusMinutes(loginAttemptService.getBlockDurationMinutes());
+           if(blockEndTime.isAfter(LocalDateTime.now())){
+               return createBlockedResponse();
+           }else {
+               loginAttemptService.unblockUser(mobileNo);
+           }
+
         }
 
         // Check if token expired
@@ -234,16 +201,17 @@ public class GiftyServiceImpl implements GiftyService {
         }
     }
 
+
     private boolean isTokenExpired(String mobileNo) {
         // Add your logic to check if token is expired for the user
         return false; // Placeholder logic
     }
 
-    private Response createBlockedUserResponse() {
+    private Response createBlockedResponse() {
         Response response = new Response();
         response.setStatus("FAILURE");
         response.setStatusCode("403");
-        response.setMessage("You are  blocked due to multiple failed login attempts. Please try again after 10 Mintues.");
+        response.setMessage("You are already blocked. Please try again after some time.");
 //        response.setResponse_message("TokenRequestDTO Processed Successfully");
         return response;
     }
@@ -275,12 +243,12 @@ public class GiftyServiceImpl implements GiftyService {
 
     private Response createSuccessResponse(String mobileNo) {
 //        SdkToken response = new SdkToken();
-        sdkToken.setStatus("SUCCESS");
-        sdkToken.setStatusCode("200");
-        sdkToken.setMessage("Successfully Login!");
-        sdkToken.setSdkToken(generateSDKToken(mobileNo));
+        response.setStatus("SUCCESS");
+        response.setStatusCode("200");
+        response.setMessage("Successfully Login!");
+        response.setSdkToken(generateSDKToken(mobileNo));
 //        response.setResponse_message("TokenRequestDTO Processed Successfully");
-        return sdkToken;
+        return response;
     }
     private void saveRequestDataToDatabase(LoginDTO loginDTO) {
         String mobileNo = loginDTO.getMobileNo();

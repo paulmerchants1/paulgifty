@@ -24,8 +24,16 @@ public class Response implements Serializable {
     private String responseMessage = "TokenRequestDTO Processed Successfully";
     @JsonProperty("response_type")
     private String responseType;
+    @JsonProperty("sdktoken")
+    private String sdkToken;
 
+    @JsonIgnore
+    private transient Boolean password;
 
-    //@JsonIgnore
-    //private transient Object sdktoken;
+    @JsonProperty("password")
+    public void setPassword(boolean password){
+        this.password = password;
+    }
+    @JsonProperty("password")
+    public Boolean isPassword(){return password;}
 }
