@@ -1,0 +1,181 @@
+[33mcommit bdd1bfb3985954dbd4b7e6ff4e6f02c65d71f0d8[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: jitu <jitdevasi8@gmail.com>
+Date:   Sat Apr 20 13:03:27 2024 +0530
+
+    first commit
+
+[33mcommit eccb879ce13bb8458db17dae8559265ddffe5421[m
+Author: jitu <jitdevasi8@gmail.com>
+Date:   Sat Apr 20 12:59:53 2024 +0530
+
+    updated
+
+[33mcommit 727bae54d91b6073eae4da0ca3a8efae22cd2067[m
+Author: jitu <jitdevasi8@gmail.com>
+Date:   Sat Apr 20 12:58:41 2024 +0530
+
+    updated
+
+[33mcommit ed527187680ef06ce7e4b71d5e1fa02fc91d9c20[m[33m ([m[1;31morigin/jitdev_vapt[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: jitu <jitdevasi8@gmail.com>
+Date:   Wed Mar 20 18:13:51 2024 +0530
+
+    Added "X-XSS-Protection" implement in Conf folder
+
+[33mcommit 7d97473e9dce73568c97b7fcb87ec4db97a74406[m
+Author: jitu <jitdevasi8@gmail.com>
+Date:   Mon Mar 18 18:20:14 2024 +0530
+
+    added V2 Api in exixting msg
+
+[33mcommit c29ae62d8b9e1d4a22210b133f35b24d352c63e1[m
+Author: jitu <jitdevasi8@gmail.com>
+Date:   Mon Mar 18 11:25:12 2024 +0530
+
+    no change
+
+[33mcommit 588d6ad066f18287bfec01613b284bee0d038e30[m
+Author: jitu <jitdevasi8@gmail.com>
+Date:   Mon Mar 18 10:02:24 2024 +0530
+
+    Added checks in SingIn Api user Block in Wrong passcode
+
+[33mcommit 7d664bd2f030eb4d3527ea0c4f79bb84dec5d8aa[m
+Author: jitu <jitdevasi8@gmail.com>
+Date:   Thu Feb 22 18:06:36 2024 +0530
+
+    _for new branch
+
+[33mcommit c56f52462c0daf852d2ec46527f5dcf39afd051a[m
+Author: jit_pc <jitdevasi8@gmail.com>
+Date:   Thu Feb 15 14:46:01 2024 +0530
+
+    change in verify
+
+[33mcommit 754f2134688ef1ecca8e53946537bc387d695a8f[m
+Author: jit_pc <jitdevasi8@gmail.com>
+Date:   Tue Feb 13 10:11:40 2024 +0530
+
+    update on pom.xml
+
+[33mcommit 533f0c5fb9f769d0df6aacb98ecc4302bb803fc7[m
+Merge: 01b6fe2 219ddd5
+Author: jit_pc <jitdevasi8@gmail.com>
+Date:   Thu Feb 1 18:07:28 2024 +0530
+
+    Merge remote-tracking branch 'github/jitdev' into jitdev
+
+[33mcommit 01b6fe2f21eb71d48f3a5f76f720934c01449674[m
+Merge: cd41944 f1ca6e8
+Author: jit_pc <jitdevasi8@gmail.com>
+Date:   Thu Feb 1 18:05:20 2024 +0530
+
+    changes in privacy policy
+
+[33mcommit 219ddd59a6bab9926fd397f2c58153322adb2f39[m
+Author: jitu0909 <142646887+jitu0909@users.noreply.github.com>
+Date:   Tue Jan 16 12:50:05 2024 +0530
+
+    Update BlogApplicationTests.java
+
+[33mcommit cd41944936078aa7a5cce9f94e0d3404e418239c[m
+Author: jit_pc <jitdevasi8@gmail.com>
+Date:   Tue Jan 16 12:44:13 2024 +0530
+
+    file change
+
+[33mcommit f1ca6e828a0558bdce732dfe3680459a03a2332c[m
+Author: jitu0909 <142646887+jitu0909@users.noreply.github.com>
+Date:   Tue Jan 16 11:23:55 2024 +0530
+
+    Update BlogApplicationTests.java
+
+[33mcommit 2cddf3c017c06e19c2c11e5e3ef06ae316ad53a7[m
+Author: jitu0909 <142646887+jitu0909@users.noreply.github.com>
+Date:   Tue Jan 16 11:23:22 2024 +0530
+
+    Update BlogApplication.java
+
+[33mcommit 6e363b188eb547c74f6343d39c6ed134f9807e70[m
+Author: jitu0909 <142646887+jitu0909@users.noreply.github.com>
+Date:   Tue Jan 16 11:22:23 2024 +0530
+
+    Delete src/main/java/com/blog/util directory
+
+[33mcommit ca647872487d54c62f3a72274c042ac05caa4c5a[m
+Author: jitu0909 <142646887+jitu0909@users.noreply.github.com>
+Date:   Tue Jan 16 11:22:11 2024 +0530
+
+    Delete src/main/java/com/blog/service directory
+
+[33mcommit e77fc67a8494374e557bf3d0bbeef3fdcbd06678[m
+Author: jitu0909 <142646887+jitu0909@users.noreply.github.com>
+Date:   Tue Jan 16 11:22:02 2024 +0530
+
+    Delete src/main/java/com/blog/security directory
+
+[33mcommit 62e5f50dbf95a9766be8eb032afa96b369e471c8[m
+Author: jitu0909 <142646887+jitu0909@users.noreply.github.com>
+Date:   Tue Jan 16 11:21:49 2024 +0530
+
+    Delete src/main/java/com/blog/repositories directory
+
+[33mcommit 53f30427ed989a762ebc17a8a2a684eaf015e9b5[m
+Author: jitu0909 <142646887+jitu0909@users.noreply.github.com>
+Date:   Tue Jan 16 11:21:34 2024 +0530
+
+    Delete src/main/java/com/blog/payload directory
+
+[33mcommit 4154e1aa142cf40be94e35637f909cc7f7946ca6[m
+Author: jitu0909 <142646887+jitu0909@users.noreply.github.com>
+Date:   Tue Jan 16 11:21:22 2024 +0530
+
+    Delete src/main/java/com/blog/exception directory
+
+[33mcommit 4e7b91281f436b2b24586f83cfb7a6598d5b4957[m
+Author: jitu0909 <142646887+jitu0909@users.noreply.github.com>
+Date:   Tue Jan 16 11:21:11 2024 +0530
+
+    Delete src/main/java/com/blog/entities directory
+
+[33mcommit 240c206b4a0a783975a61ba13b7f49b4ac44de9c[m
+Author: jitu0909 <142646887+jitu0909@users.noreply.github.com>
+Date:   Tue Jan 16 11:20:57 2024 +0530
+
+    Delete src/main/java/com/blog/controller directory
+
+[33mcommit 3b7ac3088e790d5da62362cd4a9304d73e3cc594[m
+Author: jitu0909 <142646887+jitu0909@users.noreply.github.com>
+Date:   Tue Jan 16 11:20:47 2024 +0530
+
+    Delete src/main/java/com/blog/config directory
+
+[33mcommit c328c70beb3a6c2e161407419b48eb6855d3a8bf[m
+Author: jitu0909 <142646887+jitu0909@users.noreply.github.com>
+Date:   Tue Jan 16 11:19:56 2024 +0530
+
+    Delete src/main/java/com/blog/entity directory
+
+[33mcommit 9565c5948f4138acf21de9a4fa6e9eecbea226de[m
+Author: jit_pc <jitdevasi8@gmail.com>
+Date:   Tue Jan 16 11:08:23 2024 +0530
+
+    new file added
+
+[33mcommit bc2ee2f7d833ccb89d518342f5092dff7d9baf59[m
+Author: jit_pc <jitdevasi8@gmail.com>
+Date:   Tue Jan 16 11:02:00 2024 +0530
+
+    new change
+
+[33mcommit cd831a13dbc2186753a49e800cb6e1f5c7b04f1f[m
+Author: jit_pc <jitdevasi8@gmail.com>
+Date:   Mon Dec 4 15:35:59 2023 +0530
+
+    adding files
+
+[33mcommit c6b3d7899001afaed19e1969320518f4fe79ff80[m
+Author: jit_pc <jitdevasi8@gmail.com>
+Date:   Mon Dec 4 11:10:39 2023 +0530
+
+    intial commit
