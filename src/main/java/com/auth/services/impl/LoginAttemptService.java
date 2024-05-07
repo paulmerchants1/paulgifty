@@ -1,4 +1,4 @@
-package com.auth.services.impl;
+package com.auth.services.impl;//package com.auth.services.impl;
 
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,18 @@ public class LoginAttemptService {
     }
 
     public boolean isUserBlocked(String username) {
-        return blockedUsers.containsKey(username) && blockedUsers.get(username).isAfter(LocalDateTime.now());
+        if (blockedUsers.containsKey(username)) {
+            LocalDateTime blockEndTime = blockedUsers.get(username);
+            if (blockEndTime.isAfter(LocalDateTime.now())) {
+                // User is still blocked
+                return true;
+            } else {
+                // Unblock the user since the block duration has passed
+                blockedUsers.remove(username);
+                loginAttempts.remove(username);
+            }
+        }
+        return false;
     }
 
     public void resetLoginAttempts(String username) {
@@ -38,4 +49,35 @@ public class LoginAttemptService {
     public int getLoginAttempts(String username) {
         return loginAttempts.getOrDefault(username, 0);
     }
+
+    public boolean shouldBlockUser(String username) {
+        return getLoginAttempts(username) >= getMaxAttempts();
+    }
+
+    public LocalDateTime getBlockStartTime(String username) {
+        return blockedUsers.get(username);
+    }
+
+    public void unblockUser(String username) {
+        blockedUsers.remove(username);
+    }
+
+    public void blockUser(String username) {
+        blockedUsers.put(username, LocalDateTime.now().plusMinutes(blockDurationMinutes));
+    }
+
+    public boolean hasExceededMaxAttempts(String username) {
+        return getLoginAttempts(username) >= getMaxAttempts();
+    }
+
+    // Method to record the start time when a user is blocked
+    public void recordBlockStartTime(String username) {
+        blockedUsers.put(username, LocalDateTime.now());
+    }
+
+    public int  getBlockDurationMinutes() {
+        return blockDurationMinutes;
+    }
 }
+
+
