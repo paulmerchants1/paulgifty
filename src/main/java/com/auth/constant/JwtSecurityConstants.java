@@ -6,7 +6,7 @@ public class JwtSecurityConstants {
     private JwtSecurityConstants() {
 
     }
-    public static final long JWT_TOKEN_VALIDITY = 24 * 60 * 60;
+    public static final long JWT_TOKEN_VALIDITY = 2 * 60 * 60;
 
 
     //=> Random 512-bit encryption key, you can generate from net:

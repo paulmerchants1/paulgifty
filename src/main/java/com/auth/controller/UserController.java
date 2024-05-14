@@ -14,6 +14,7 @@ import com.auth.services.GiftyService;
 import com.auth.services.UserInfoService;
 import com.auth.services.UserService;
 import com.auth.services.impl.VerificationService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -60,7 +61,7 @@ public class UserController {
     }
 
     @PostMapping("/sdk-token")
-    public ResponseEntity<Response> createSDKToken(@RequestBody MobileNoDTO mobileNoDTO) {
+    public ResponseEntity<Response> createSDKToken(@RequestBody @Valid MobileNoDTO mobileNoDTO) {
         log.info("Received request to create SDK token");
         Response response = giftyService.createSDKToken(mobileNoDTO);
         log.info("SDK token created successfully");
@@ -69,7 +70,7 @@ public class UserController {
 
 //    The below method is for preprod Testing purposes
     @PostMapping("/sdk-tokenv2")
-    public ResponseEntity<Response> CreateSdkTokenV2(@RequestBody MobileNoDTO mobileNoDTO){
+    public ResponseEntity<Response> CreateSdkTokenV2(@RequestBody @Valid MobileNoDTO mobileNoDTO){
         log.info(" Recieved request ton create SdkTOken");
         Response sdkToken = giftyService.createSdkTokenV2(mobileNoDTO);
         log.info("SDK Token Created");
