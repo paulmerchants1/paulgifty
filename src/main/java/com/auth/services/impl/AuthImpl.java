@@ -3,7 +3,7 @@ package com.auth.services.impl;
 
 
 
-import com.auth.Util.SecureFiles;
+import com.auth.Util.*;
 import com.auth.constant.AuthenticationAuthorizationConstant;
 import com.auth.constant.RoleConstants;
 import com.auth.dto.Response;
@@ -178,11 +178,9 @@ public class AuthImpl implements AuthService {
     @Override
     public Response singInV2(JwtAuthRequest userCredentials) {
         log.info("=>>SignIn:: Inside executeService Method<<=");
-
-        String userName = new SecureFiles().decryptKey("fb40b261a143ae1bec691cedebf5120e", userCredentials.getUsername());
-        String password = new SecureFiles().decryptKey("fb40b261a143ae1bec691cedebf5120e", userCredentials.getPassword());
-
-
+        SecureHelper secureFiles =new SecureHelper();
+        String userName = secureFiles.decryptKey("fb40b261a143ae1bec691cedebf5120e", userCredentials.getUsername());
+        String password = secureFiles.decryptKey("fb40b261a143ae1bec691cedebf5120e", userCredentials.getPassword());
 
         /*----Now call the authenticate Method for authentication----*/
         this.authenticate(userName,password);

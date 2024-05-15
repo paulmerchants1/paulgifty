@@ -19,12 +19,12 @@ import javax.crypto.spec.SecretKeySpec
  * buildConfigField "String", "USERNAME", "\"/ERCVzcMkkl4h1IDVSf1FA==\""
  */
 
-class SecureFiles : LogicSecure {
+class SecureFiles {
 
     //    SECRETKEY: MobApp#L0AnDeT@ils#SeCUretechpool*20&23
 //    val secretKey = "MobApp#L0AnDeT@ils#SeCUretechpool*20&23"
 //    val secret = BuildConfig.SECRET_KEY
-    override fun getSHA256(key: String): String {
+     fun getSHA256(key: String): String {
         val md: MessageDigest = MessageDigest.getInstance("SHA-256")
         val messageDigest = md.digest(key.toByteArray())
         // Convert byte array into signum representation
@@ -39,7 +39,7 @@ class SecureFiles : LogicSecure {
             .uppercase(Locale.getDefault())
     }
 
-    override fun encryptKey(strToEncrypt: String, secret_key: String): String? {
+    fun encryptKey(strToEncrypt: String, secret_key: String): String? {
         Security.addProvider(BouncyCastleProvider())
         val keyBytes: ByteArray
 
@@ -81,7 +81,7 @@ class SecureFiles : LogicSecure {
         return null
     }
 
-    override fun decryptKey(key: String, strToDecrypt: String?): String? {
+    fun decryptKey(key: String, strToDecrypt: String?): String? {
         Security.addProvider(BouncyCastleProvider())
         var keyBytes: ByteArray
 
