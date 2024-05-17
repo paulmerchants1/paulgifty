@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface PasswordManagerRepo extends JpaRepository<PasswordManager, Long> {
     Optional<PasswordManager> findByMobileNo(String mobileNo);
 
-    List<PasswordManager> findByMobileNoAndPassword(String mobileNo, String password);
+    Optional<PasswordManager> findByMobileNoAndPassword(String mobileNo, String password);
 }

@@ -2,7 +2,7 @@ package com.auth.services.impl;
 
 // OtpService.java
 
-import com.auth.Util.OtpGeneratorUtil;
+import com.auth.util.OtpGeneratorUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

@@ -1,12 +1,13 @@
 package com.auth.services.impl;
 
 
+import com.auth.Exception.InvalidMobileNumberException;
+import com.auth.controller.ApiResponse;
 import com.auth.dto.LoginDTO;
 import com.auth.dto.ResetDTO;
 import com.auth.dto.Response;
 import com.auth.dto.SetPasswordDTO;
 import com.auth.dto.sdkdto.MobileNoDTO;
-
 import com.auth.entity.PasswordManager;
 import com.auth.entity.UserData;
 import com.auth.entity.skdentity.SdkResponse;
@@ -360,9 +361,10 @@ public class GiftyServiceImpl implements GiftyService {
             message = "You are blocked due to multiple failed login attempts. Please try again after 10 minutes.";
         }
         response.setStatus("FAILURE");
-        response.setStatusCode("401");
+        response.setStatusCode("403");
         response.setMessage(message);
         return response;
+//        throw new InvalidMobileNumberException(message);
     }
 
     private Response createSuccessResponse(String mobileNo) {
@@ -401,7 +403,7 @@ public class GiftyServiceImpl implements GiftyService {
     private boolean validateLogin(String mobileNo, String password) {
         // Implement your validation logic here
         // For example, you can check if the mobileNo and password match records in the database
-        List<PasswordManager> byMobileNo = passwordManagerRepo.findByMobileNoAndPassword(mobileNo, password);
+        Optional<PasswordManager> byMobileNo = passwordManagerRepo.findByMobileNoAndPassword(mobileNo, password);
         return !byMobileNo.isEmpty();
     }
 
@@ -487,22 +489,4 @@ public class GiftyServiceImpl implements GiftyService {
         }
     }
 
-//    private String generateSDKTokens(String mobileNo) {
-//        // Implement JWT token generation logic here
-//        String key = mobileNo + new Date().getTime();
-//        try {
-//            final MessageDigest digest = MessageDigest.getInstance("SHA-256");
-//            final byte[] hash = digest.digest(key.getBytes("UTF-8"));
-//            final StringBuilder hexString = new StringBuilder();
-//            for (byte b : hash) {
-//                final String hex = Integer.toHexString(0xff & b);
-//                if (hex.length() == 1)
-//                    hexString.append('0');
-//                hexString.append(hex);
-//            }
-//            return hexString.substring(0, 15);
-//        } catch (Exception ex) {
-//            throw new RuntimeException(ex);
-//        }
-//    }
 }

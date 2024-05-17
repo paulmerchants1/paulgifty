@@ -1,4 +1,4 @@
-package com.auth.Util;
+package com.auth.util;
 
 // OtpGeneratorUtil.java
 import java.util.Random;

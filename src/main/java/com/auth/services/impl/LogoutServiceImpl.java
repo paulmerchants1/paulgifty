@@ -20,6 +20,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Map;
 
 @Service
@@ -63,7 +64,7 @@ public class LogoutServiceImpl implements LogoutHandler {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json");
             try {
-                writeResponse(response, "MobileNo does not exist");
+                writeResponse(response, "FAILURE", "404", "MobileNo does not exist");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -96,7 +97,7 @@ public class LogoutServiceImpl implements LogoutHandler {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json");
             try {
-                writeResponse(response, "User logged out successfully");
+                writeResponse(response, "SUCCESS", "200", "User logged out successfully");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -121,7 +122,22 @@ public class LogoutServiceImpl implements LogoutHandler {
         }
     }
 
-    private void writeResponse(HttpServletResponse response, String message) throws IOException {
-        response.getWriter().write(objectMapper.writeValueAsString(Map.of("message", message)));
+//
+
+
+
+    public static void writeResponse(HttpServletResponse response, String status, String statusCode, String message) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+
+
+        Map<String, Object> responseBody = new HashMap<>();
+        responseBody.put("status", status);
+        responseBody.put("statusCode", statusCode);
+        responseBody.put("message", message);
+
+        response.getWriter().write(objectMapper.writeValueAsString(responseBody));
     }
 }
+
+

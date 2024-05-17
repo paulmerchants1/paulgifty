@@ -1,6 +1,8 @@
 package com.auth.dto.registoruserdto;
 
 
+
+
 import com.auth.constant.RoleConstants;
 import lombok.*;
 
@@ -10,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @Setter
 @Getter
-@Builder
+
 public class RegisterRequestDTO {
 
     private int userId;

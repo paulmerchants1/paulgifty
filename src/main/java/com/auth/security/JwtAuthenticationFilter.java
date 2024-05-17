@@ -115,7 +115,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         response.setStatus(status);
         Map<String, String> errorResponse = new HashMap<>();
         errorResponse.put("status", AuthenticationAuthorizationConstant.FAILURE_STATUS);
-        errorResponse.put("errorMessage", errorMessage);
+        errorResponse.put("Message", errorMessage);
         errorResponse.put("statusCode", String.valueOf(status));
         errorResponse.put("responseType", AuthenticationAuthorizationConstant.RESPONSE_TYPE);
         ObjectMapper objectMapper = new ObjectMapper();

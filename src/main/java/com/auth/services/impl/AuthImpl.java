@@ -1,8 +1,9 @@
 package com.auth.services.impl;
 
-import com.auth.Util.SecureFiles;
+
 import com.auth.constant.AuthenticationAuthorizationConstant;
 import com.auth.constant.RoleConstants;
+
 import com.auth.dto.Response;
 import com.auth.dto.authdto.JwtAuthRequest;
 import com.auth.dto.authdto.JwtAuthResponse;
@@ -17,6 +18,8 @@ import com.auth.repo.TokenRepo;
 import com.auth.repo.UserRepo;
 import com.auth.security.JwtTokenHelper;
 import com.auth.services.AuthService;
+
+import com.auth.util.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -175,9 +178,9 @@ public class AuthImpl implements AuthService {
     @Override
     public Response singInV2(JwtAuthRequest userCredentials) {
         log.info("=>>SignIn:: Inside executeService Method<<=");
-
-        String userName = new SecureFiles().decryptKey("fb40b261a143ae1bec691cedebf5120e", userCredentials.getUsername());
-        String password = new SecureFiles().decryptKey("fb40b261a143ae1bec691cedebf5120e", userCredentials.getPassword());
+        SecureHelper secureFiles =new SecureHelper();
+        String userName = secureFiles.decryptKey("fb40b261a143ae1bec691cedebf5120e", userCredentials.getUsername());
+        String password = secureFiles.decryptKey("fb40b261a143ae1bec691cedebf5120e", userCredentials.getPassword());
 
 
 
