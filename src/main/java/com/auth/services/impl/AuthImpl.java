@@ -3,7 +3,6 @@ package com.auth.services.impl;
 
 import com.auth.constant.AuthenticationAuthorizationConstant;
 import com.auth.constant.RoleConstants;
-
 import com.auth.dto.Response;
 import com.auth.dto.authdto.JwtAuthRequest;
 import com.auth.dto.authdto.JwtAuthResponse;
@@ -18,7 +17,6 @@ import com.auth.repo.TokenRepo;
 import com.auth.repo.UserRepo;
 import com.auth.security.JwtTokenHelper;
 import com.auth.services.AuthService;
-
 import com.auth.util.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +30,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;

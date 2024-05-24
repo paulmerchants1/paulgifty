@@ -404,7 +404,7 @@ public class GiftyServiceImpl implements GiftyService {
         // Implement your validation logic here
         // For example, you can check if the mobileNo and password match records in the database
         Optional<PasswordManager> byMobileNo = passwordManagerRepo.findByMobileNoAndPassword(mobileNo, password);
-        return !byMobileNo.isEmpty();
+        return byMobileNo.isPresent();
     }
 
     @Override
